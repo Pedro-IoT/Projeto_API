@@ -18,6 +18,7 @@ public class HabitService {
 
     private Habit searchUserHabit (Long habitId, Long userId) {
         Habit habit = habitsMap.get(habitId);
+
         if (habit != null && habit.getId().equals(userId)) {
             return habit;
         }
@@ -37,11 +38,34 @@ public class HabitService {
         List<Habit> userHabitsList = new ArrayList<>();
 
         for (Habit h : habitsMap.values()) {
+
             if (h.getUserId().equals(userId)) {
                 userHabitsList.add(h);
             }
         }
-
         return userHabitsList;
     }
+
+    public boolean deleteHabit (Long userId, Long habitId) {
+        Habit habit = searchUserHabit(userId, habitId);
+
+        if (habit != null){
+            habitsMap.remove(habitId);
+            return true;
+        }
+        return false;
+    }
+
+    public Habit markAsDone (Long userId, Long habitId) {
+        Habit habit = searchUserHabit(userId, habitId);
+
+        if (habit != null) {
+            LocalDate today = LocalDate.now();
+            if (!habit.getDateChecks().contains(today)){
+                habit.addDateCheck(today);
+            }
+        }
+        return habit;
+    }
+
 }

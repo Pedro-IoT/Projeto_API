@@ -8,17 +8,15 @@ public class Habit {
 
     private Long id;
     private String name;
-    private String description;
     private Long userId;
 
     private List<LocalDate> dateChecks = new ArrayList<>();
 
     public Habit(){}
 
-    public Habit(Long id, String name, String description, Long userId) {
+    public Habit(Long id, String name, Long userId) {
         this.id = id;
         this.name = name;
-        this.description = description;
         this.userId = userId;
     }
 
@@ -36,14 +34,6 @@ public class Habit {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Long getUserId() {
