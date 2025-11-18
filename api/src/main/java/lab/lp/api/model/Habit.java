@@ -24,8 +24,8 @@ public class Habit {
         return id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long habitId) {
+        this.id = habitId;
     }
 
     public String getName() {
@@ -40,7 +40,7 @@ public class Habit {
         return userId;
     }
 
-    public void setId(Long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

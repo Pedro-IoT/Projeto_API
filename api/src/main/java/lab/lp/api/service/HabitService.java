@@ -26,7 +26,7 @@ public class HabitService {
     }
 
     public Habit create (Habit newHabit, Long userId) {
-        long id = idGenerator.incrementAndGet();
+        Long id = idGenerator.incrementAndGet();
         newHabit.setId(id);
         newHabit.setUserId(userId);
         habitsMap.put(id, newHabit);
