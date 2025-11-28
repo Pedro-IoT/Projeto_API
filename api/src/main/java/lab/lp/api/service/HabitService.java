@@ -5,16 +5,15 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
+
+
 
 @Service
 public class HabitService {
 
-    private final Map<Long, Habit> habitsMap = new HashMap<>();
-    private final AtomicLong idGenerator = new AtomicLong();
+
 
     private Habit searchUserHabit (Long habitId, Long userId) {
         Habit habit = habitsMap.get(habitId);

@@ -1,29 +1,30 @@
 package lab.lp.api.service;
 
 import lab.lp.api.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import lab.lp.api.repository.UserRepository;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class UserService {
 
-    private final Map<Long, User> usersMap = new HashMap<>();
-    private final AtomicLong idGenerator = new AtomicLong();
+    @Autowired
+    UserRepository userRepository;
 
     public User create (User user) {
-        long id = idGenerator.incrementAndGet();
-        user.setId(id);
-        usersMap.put(id, user);
+        return userRepository.save(user);
+    }
 
-        return user;
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     public User searchById (Long id) {
-        return usersMap.get(id);
+        return userRepository.findById(id);
+    }
+
+    public void deleteById (Long id) {
+        userRepository.deleteById(id);
     }
 }
