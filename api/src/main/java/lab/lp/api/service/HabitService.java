@@ -1,42 +1,41 @@
 package lab.lp.api.service;
 
 import lab.lp.api.model.Habit;
+import lab.lp.api.repository.HabitRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import java.util.List;
-
-
 
 @Service
 public class HabitService {
+    
+    @Autowired
+    HabitRepository habitRepository;
 
+    private Habit searchUserHabit (Long userId, Long habitId) {
+        List <Habit> habitsList = habitRepository.findAll();
 
-
-    private Habit searchUserHabit (Long habitId, Long userId) {
-        Habit habit = habitsMap.get(habitId);
-
-        if (habit != null && habit.getId().equals(userId)) {
-            return habit;
+        for (Habit h : habitsList) {
+            if(h.getUserId().equals(userId) && h.getId().equals(habitId)){
+                return h;
+            }
         }
         return null;
     }
-
+    
     public Habit create (Habit newHabit, Long userId) {
-        Long id = idGenerator.incrementAndGet();
-        newHabit.setId(id);
         newHabit.setUserId(userId);
-        habitsMap.put(id, newHabit);
-
-        return newHabit;
+        
+        return habitRepository.save(newHabit);
     }
 
     public List<Habit> habitsList (Long userId) {
+        List <Habit> habitsList = habitRepository.findAll();
         List<Habit> userHabitsList = new ArrayList<>();
 
-        for (Habit h : habitsMap.values()) {
+        for (Habit h : habitsList) {
 
             if (h.getUserId().equals(userId)) {
                 userHabitsList.add(h);
@@ -49,7 +48,7 @@ public class HabitService {
         Habit habit = searchUserHabit(userId, habitId);
 
         if (habit != null){
-            habitsMap.remove(habitId);
+            habitRepository.deleteById(habitId);
             return true;
         }
         return false;

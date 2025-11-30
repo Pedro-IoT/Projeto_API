@@ -16,9 +16,7 @@ public class HabitRepository {
     private final AtomicLong idGenerator = new AtomicLong();
 
     public Habit save (Habit habit) {
-        if (habit.getId() == null){
-            habit.setId(idGenerator.incrementAndGet());
-        }
+        habit.setId(idGenerator.incrementAndGet());
         habitsMap.put(habit.getId(), habit);
         return habit;
     }

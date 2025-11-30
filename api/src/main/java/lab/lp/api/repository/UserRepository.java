@@ -15,9 +15,7 @@ public class UserRepository {
     private final AtomicLong idGenerator = new AtomicLong();
 
     public User save (User user) {
-        if (user.getId() == null) {
-            user.setId(idGenerator.incrementAndGet());
-        }
+        user.setId(idGenerator.incrementAndGet());
         usersMap.put(user.getId(), user);
         return user;
     }

@@ -10,7 +10,7 @@ public class Habit {
     private String name;
     private Long userId;
 
-    private List<LocalDate> dateChecks = new ArrayList<>();
+    private final List<LocalDate> dateChecks = new ArrayList<>();
 
     public Habit(){}
 

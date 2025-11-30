@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -18,17 +18,7 @@ public class UserController {
     private HabitService habitService;
 
     @PostMapping
-    public User createUser (@RequestBody User user) {
+    public User createUser(@RequestBody User user) {
         return userService.create(user);
-    }
-
-    @PostMapping("/{userId}/habits")
-    public Habit createHabit (@PathVariable Long userId, @RequestBody Habit habit) {
-        return habitService.create(habit, userId);
-    }
-
-    @GetMapping("/{userId}/habits")
-    public List<Habit> listHabits (@PathVariable Long userId) {
-        return habitService.habitsList(userId);
     }
 }
