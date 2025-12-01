@@ -1,5 +1,7 @@
 package lab.lp.api.service;
 
+import lab.lp.api.dto.HabitCreateDTO;
+import lab.lp.api.dto.HabitResponseDTO;
 import lab.lp.api.model.Habit;
 import lab.lp.api.repository.HabitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,31 +16,42 @@ public class HabitService {
     @Autowired
     HabitRepository habitRepository;
 
-    private Habit searchUserHabit (Long userId, Long habitId) {
-        List <Habit> habitsList = habitRepository.findAll();
+    private HabitResponseDTO convertToDTO (Habit habit) {
+        int sequenceOfDays = 0;
+        return new HabitResponseDTO(
+                habit.getId(),
+                habit.getName(),
+                sequenceOfDays
+        );
+    }
 
-        for (Habit h : habitsList) {
-            if(h.getUserId().equals(userId) && h.getId().equals(habitId)){
-                return h;
-            }
+    private Habit searchUserHabit (Long userId, Long habitId) {
+        Habit habit = habitRepository.findById(habitId);
+
+        if (habit != null && habit.getUserId().equals(userId)) {
+            return habit;
         }
         return null;
     }
     
-    public Habit create (Habit newHabit, Long userId) {
+    public HabitResponseDTO create (HabitCreateDTO entryData, Long userId) {
+        Habit newHabit = new Habit();
+        newHabit.setName(entryData.name());
         newHabit.setUserId(userId);
+        Habit savedHabit = habitRepository.save(newHabit);
         
-        return habitRepository.save(newHabit);
+        return convertToDTO(savedHabit);
     }
 
-    public List<Habit> habitsList (Long userId) {
+    public List<HabitResponseDTO> habitsList (Long userId) {
         List <Habit> habitsList = habitRepository.findAll();
-        List<Habit> userHabitsList = new ArrayList<>();
+        List<HabitResponseDTO> userHabitsList = new ArrayList<>();
 
         for (Habit h : habitsList) {
 
             if (h.getUserId().equals(userId)) {
-                userHabitsList.add(h);
+                HabitResponseDTO convertedH = convertToDTO(h);
+                userHabitsList.add(convertedH);
             }
         }
         return userHabitsList;
@@ -54,7 +67,7 @@ public class HabitService {
         return false;
     }
 
-    public Habit markAsDone (Long userId, Long habitId) {
+    public HabitResponseDTO markAsDone (Long userId, Long habitId) {
         Habit habit = searchUserHabit(userId, habitId);
 
         if (habit != null) {
@@ -63,7 +76,8 @@ public class HabitService {
                 habit.addDateCheck(today);
             }
         }
-        return habit;
+
+        return convertToDTO(habit);
     }
 
 }

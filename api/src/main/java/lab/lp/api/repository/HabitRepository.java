@@ -4,6 +4,7 @@ import lab.lp.api.model.Habit;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.List;
 @Repository
 public class HabitRepository {
 
-    private final Map<Long, Habit> habitsMap = new HashMap<>();
+    private final Map<Long, Habit> habitsMap = new ConcurrentHashMap<>();
     private final AtomicLong idGenerator = new AtomicLong();
 
     public Habit save (Habit habit) {

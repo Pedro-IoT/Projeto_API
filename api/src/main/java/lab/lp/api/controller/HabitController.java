@@ -1,8 +1,13 @@
 package lab.lp.api.controller;
 
+import lab.lp.api.dto.HabitCreateDTO;
+import lab.lp.api.dto.HabitResponseDTO;
 import lab.lp.api.model.Habit;
 import lab.lp.api.service.HabitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,22 +20,36 @@ public class HabitController {
     private HabitService habitService;
 
     @PostMapping
-    public Habit createHabit (@PathVariable Long userId, @RequestBody Habit habit) {
-        return habitService.create(habit, userId);
+    public ResponseEntity<HabitResponseDTO> createHabit (@PathVariable Long userId, @RequestBody HabitCreateDTO body) {
+        HabitResponseDTO newHabit = habitService.create(body, userId);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(newHabit);
     }
 
     @GetMapping
-    public List<Habit> listHabits (@PathVariable Long userId) {
-        return habitService.habitsList(userId);
+    public ResponseEntity<List<HabitResponseDTO>> listHabits(@PathVariable Long userId) {
+        List<HabitResponseDTO> list = habitService.habitsList(userId);
+        return ResponseEntity.ok(list);
     }
 
     @DeleteMapping("/{habitId}")
-    public boolean deleteHabit (@PathVariable Long userId, @PathVariable Long habitId) {
-        return habitService.deleteHabit(userId, habitId);
+    public ResponseEntity<Void> deleteHabit (@PathVariable Long userId, @PathVariable Long habitId) {
+        boolean isDeleted = habitService.deleteHabit(userId, habitId);
+
+        if (isDeleted) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @PatchMapping("/{habitId}")
-    public Habit markAsDone (@PathVariable Long userId, @PathVariable Long habitId) {
-        return habitService.markAsDone(userId, habitId);
+    public ResponseEntity<HabitResponseDTO> markAsDone (@PathVariable Long userId, @PathVariable Long habitId) {
+        HabitResponseDTO doneHabit = habitService.markAsDone(userId, habitId);
+
+        if (doneHabit != null) {
+            return ResponseEntity.ok(doneHabit);
+        }
+
+        return ResponseEntity.notFound().build();
     }
 }
