@@ -4,6 +4,7 @@ import lab.lp.api.dto.HabitCreateDTO;
 import lab.lp.api.dto.HabitResponseDTO;
 import lab.lp.api.model.Habit;
 import lab.lp.api.repository.HabitRepository;
+import lab.lp.api.service.logic.StreakCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
@@ -16,8 +17,11 @@ public class HabitService {
     @Autowired
     HabitRepository habitRepository;
 
+    @Autowired
+    StreakCalculator streakCalculator;
+
     private HabitResponseDTO convertToDTO (Habit habit) {
-        int sequenceOfDays = 0;
+        int sequenceOfDays = streakCalculator.calculate(habit.getDateChecks());
         return new HabitResponseDTO(
                 habit.getId(),
                 habit.getName(),
@@ -79,5 +83,4 @@ public class HabitService {
 
         return convertToDTO(habit);
     }
-
 }

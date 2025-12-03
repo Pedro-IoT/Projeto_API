@@ -1,12 +1,14 @@
 package lab.lp.api.controller;
 
+import lab.lp.api.dto.UserCreateDTO;
+import lab.lp.api.dto.UserResponseDTO;
 import lab.lp.api.model.User;
-import lab.lp.api.model.Habit;
-import lab.lp.api.service.HabitService;
 import lab.lp.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/users")
@@ -14,11 +16,11 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private HabitService habitService;
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.create(user);
+    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserCreateDTO body) {
+        UserResponseDTO newUser = userService.create(body);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 }
