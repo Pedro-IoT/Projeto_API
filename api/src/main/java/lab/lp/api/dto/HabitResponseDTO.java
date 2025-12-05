@@ -1,4 +1,4 @@
 package lab.lp.api.dto;
 
-public record HabitResponseDTO(Long id, String name, int sequenceOfDays) {
+public record HabitResponseDTO(Long id, String name, int sequenceOfDays, boolean checkedToday) {
 }

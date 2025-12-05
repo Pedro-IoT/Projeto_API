@@ -1,10 +1,8 @@
 package lab.lp.api.service.logic;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

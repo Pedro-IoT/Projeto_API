@@ -27,7 +27,7 @@ public class HabitController {
     }
 
     @GetMapping
-    public ResponseEntity<List<HabitResponseDTO>> listHabits(@PathVariable Long userId) {
+    public ResponseEntity<List<HabitResponseDTO>> listHabits (@PathVariable Long userId) {
         List<HabitResponseDTO> list = habitService.habitsList(userId);
         return ResponseEntity.ok(list);
     }
@@ -51,5 +51,12 @@ public class HabitController {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/doneToday")
+    public ResponseEntity<List<HabitResponseDTO>> listCheckedToday (@PathVariable Long userId) {
+        List<HabitResponseDTO> list = habitService.habitsCheckedToday(userId);
+
+        return ResponseEntity.ok(list);
     }
 }

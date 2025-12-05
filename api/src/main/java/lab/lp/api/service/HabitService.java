@@ -25,7 +25,8 @@ public class HabitService {
         return new HabitResponseDTO(
                 habit.getId(),
                 habit.getName(),
-                sequenceOfDays
+                sequenceOfDays,
+                checkedToday(habit.getDateChecks())
         );
     }
 
@@ -51,11 +52,11 @@ public class HabitService {
         List <Habit> habitsList = habitRepository.findAll();
         List<HabitResponseDTO> userHabitsList = new ArrayList<>();
 
-        for (Habit h : habitsList) {
+        for (Habit habit : habitsList) {
 
-            if (h.getUserId().equals(userId)) {
-                HabitResponseDTO convertedH = convertToDTO(h);
-                userHabitsList.add(convertedH);
+            if (habit.getUserId().equals(userId)) {
+                HabitResponseDTO convertedHabit = convertToDTO(habit);
+                userHabitsList.add(convertedHabit);
             }
         }
         return userHabitsList;
@@ -82,5 +83,23 @@ public class HabitService {
         }
 
         return convertToDTO(habit);
+    }
+
+    private boolean checkedToday (List<LocalDate> dateChecks) {
+        LocalDate today = LocalDate.now();
+        return dateChecks.contains(today);
+    }
+
+    public List<HabitResponseDTO> habitsCheckedToday (Long userId) {
+        List <HabitResponseDTO> habitsList = habitsList(userId);
+        List<HabitResponseDTO> habitsCheckedToday = new ArrayList<>();
+
+        for (HabitResponseDTO habit : habitsList) {
+            if (habit.checkedToday()) {
+                habitsCheckedToday.add(habit);
+            }
+        }
+
+        return habitsCheckedToday;
     }
 }
