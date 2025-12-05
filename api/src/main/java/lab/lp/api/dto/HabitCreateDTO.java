@@ -1,4 +1,8 @@
 package lab.lp.api.dto;
 
-public record HabitCreateDTO(String name) {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public record HabitCreateDTO(
+        @Schema(description = "Nome do hábito a ser criado", example = "Estudar FMC")
+        String name) {
 }
