@@ -1,30 +1,47 @@
 package lab.lp.api.model;
 
+import jakarta.persistence.*;
+
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.UUID;
 
-public class Habit {
 
-    private Long id;
+@Entity
+@Table(name = "TB_HABITS")
+public class Habit implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    @Column(nullable = false)
     private String name;
-    private Long userId;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "TB_HABIT_CHECKS",
+            joinColumns = @JoinColumn(name = "habit_id")
+    )
+    @Column(name = "CHECK_DATE")
     private final List<LocalDate> dateChecks = new ArrayList<>();
 
     public Habit(){}
 
-    public Habit(Long id, String name, Long userId) {
-        this.id = id;
-        this.name = name;
-        this.userId = userId;
-    }
-
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long habitId) {
+    public void setId(UUID habitId) {
         this.id = habitId;
     }
 
@@ -36,12 +53,12 @@ public class Habit {
         this.name = name;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser () {
+        return this.user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<LocalDate> getDateChecks () {

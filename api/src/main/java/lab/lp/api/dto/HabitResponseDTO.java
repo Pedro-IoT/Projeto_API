@@ -2,9 +2,11 @@ package lab.lp.api.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.util.UUID;
+
 public record HabitResponseDTO(
-        @Schema(description = "Identificador único do hábito", example = "1")
-        Long id,
+        @Schema(description = "Identificador único do hábito", example = "d3ee2929-212b-4077-af84-694a0e69b8e1")
+        UUID id,
 
         @Schema(description = "Nome/descrição do hábito", example = "Ler 10 páginas")
         String name,

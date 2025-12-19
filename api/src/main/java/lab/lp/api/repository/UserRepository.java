@@ -1,36 +1,12 @@
 package lab.lp.api.repository;
 
 import lab.lp.api.model.User;
-import org.springframework.stereotype.Repository;
-import java.util.ArrayList;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class UserRepository {
+import java.util.UUID;
 
-    private final Map<Long, User> usersMap = new ConcurrentHashMap<>();
-    private final AtomicLong idGenerator = new AtomicLong();
-
-    public User save (User user) {
-        user.setId(idGenerator.incrementAndGet());
-        usersMap.put(user.getId(), user);
-        return user;
-    }
-
-    public List<User> findAll() {
-        return new ArrayList<>(usersMap.values());
-    }
-
-    public User findById (Long id) {
-        return usersMap.get(id);
-    }
-
-    public void deleteById (Long id) {
-        usersMap.remove(id);
-    }
-
+public interface UserRepository extends JpaRepository<User, UUID> {
+    User findUserByName(String name);
+    User findUserByEmail(String email);
+    User findUserById(UUID id);
 }

@@ -1,24 +1,50 @@
 package lab.lp.api.model;
 
-public class User {
 
-    private Long id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
+@Entity
+@Table(name = "TB_USERS")
+public class User implements Serializable {
+
+    @Serial
+    private final static long serialVersionUID = 1L;
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<Habit> habits = new HashSet<>();
 
     public User (){}
 
-    public User (Long id, String name, String email){
+    public User (UUID id, String name, String email){
         this.id = id;
         this.name = name;
         this.email = email;
     }
 
-    public Long getId () {
+    public UUID getId () {
         return id;
     }
 
-    public void setId (Long id) {
+    public void setId (UUID id) {
         this.id = id;
     }
 
@@ -37,4 +63,13 @@ public class User {
     public void setEmail (String email) {
         this.email = email;
     }
+
+    public Set<Habit> getHabits() {
+        return habits;
+    }
+
+    public void setHabits(Set<Habit> habits) {
+        this.habits = habits;
+    }
 }
+
