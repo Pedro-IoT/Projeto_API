@@ -52,48 +52,50 @@ Certifique-se de ter instalado em sua máquina:
 git clone [https://github.com/SEU-USUARIO/habit-tracker-api.git](https://github.com/SEU-USUARIO/habit-tracker-api.git)
 cd habit-tracker-api/api
 
-2. Configurar Variáveis de Ambiente
-Por segurança, este projeto utiliza variáveis de ambiente para dados sensíveis. Crie as variáveis no seu sistema ou na sua IDE (IntelliJ/Eclipse):
-Variável
-Descrição
-Exemplo
-DB_URL
-URL de conexão JDBC do Postgres
-jdbc:postgresql://localhost:5432/habit_tracker
-DB_USERNAME
-Usuário do Banco
-postgres
-DB_PASSWORD
-Senha do Banco
-minha_senha
-JWT.SECRET
-Chave secreta para assinatura do Token
-uma_string_aleatoria_e_segura
+```
 
-3. Executar a aplicação
+### 2. Configurar Variáveis de Ambiente
+
+Por segurança, este projeto utiliza variáveis de ambiente para dados sensíveis. Crie as variáveis no seu sistema ou na sua IDE (IntelliJ/Eclipse):
+
+| Variável | Descrição | Exemplo |
+| --- | --- | --- |
+| `DB_URL` | URL de conexão JDBC do Postgres | `jdbc:postgresql://localhost:5432/habit_tracker` |
+| `DB_USERNAME` | Usuário do Banco | `postgres` |
+| `DB_PASSWORD` | Senha do Banco | `minha_senha` |
+| `JWT.SECRET` | Chave secreta para assinatura do Token | `uma_string_aleatoria_e_segura` |
+
+### 3. Executar a aplicação
+
 Com as variáveis configuradas, execute via terminal:
 
-Bash
-
-
+```bash
 ./mvnw spring-boot:run
 
+```
 
-A aplicação iniciará na porta 8080.
-📚 Documentação da API
+A aplicação iniciará na porta `8080`.
+
+---
+
+## 📚 Documentação da API
+
 Com a aplicação rodando, acesse a documentação interativa completa (Swagger UI) em:
 
-
-
+```
 http://localhost:8080/swagger-ui/index.html
 
+```
 
-Dica: Para testar rotas protegidas no Swagger, faça login na rota /auth/login, copie o token gerado e cole no botão Authorize no topo da página.
-📂 Estrutura do Projeto
+> **Dica:** Para testar rotas protegidas no Swagger, faça login na rota `/auth/login`, copie o token gerado e cole no botão **Authorize** no topo da página.
+
+---
+
+## 📂 Estrutura do Projeto
+
 O projeto segue uma estrutura baseada em domínios e camadas:
 
-
-
+```
 src/main/java/lab/lp/api
 ├── controller       # Camada de entrada (REST Controllers)
 ├── domain           # Regras de Negócio Core
@@ -106,16 +108,28 @@ src/main/java/lab/lp/api
     ├── exception    # Tratamento global de erros
     └── security     # Configuração de Segurança e Filtros JWT
 
+```
 
-🤝 Contribuição
+---
+
+## 🤝 Contribuição
+
 Contribuições são bem-vindas! Se você tiver sugestões de melhoria ou novas features:
-Faça um Fork do projeto.
-Crie uma Branch para sua Feature (git checkout -b feature/MinhaFeature).
-Faça o Commit (git commit -m 'Adicionando funcionalidade X').
-Faça o Push (git push origin feature/MinhaFeature).
-Abra um Pull Request.
-📝 Licença
-Este projeto está sob a licença Apache 2.0.
+
+1. Faça um **Fork** do projeto.
+2. Crie uma Branch para sua Feature (`git checkout -b feature/MinhaFeature`).
+3. Faça o Commit (`git commit -m 'Adicionando funcionalidade X'`).
+4. Faça o Push (`git push origin feature/MinhaFeature`).
+5. Abra um **Pull Request**.
+
+---
+
+## 📝 Licença
+
+Este projeto está sob a licença [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+---
+
 <p align="center">
 Desenvolvido por <strong>Pedro Lucas Maia</strong>
 </p>
