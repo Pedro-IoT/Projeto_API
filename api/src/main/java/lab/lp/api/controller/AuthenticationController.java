@@ -1,0 +1,48 @@
+package lab.lp.api.controller;
+
+
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lab.lp.api.dto.users.UserLoginDTO;
+import lab.lp.api.dto.users.UserLoginResponseDTO;
+import lab.lp.api.dto.users.UserRegisterDTO;
+import lab.lp.api.dto.users.UserResponseDTO;
+import lab.lp.api.infra.security.CustomUserDetails;
+import lab.lp.api.infra.security.TokenService;
+import lab.lp.api.domain.repository.UserRepository;
+import lab.lp.api.domain.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/auth")
+@Tag(name = "Authentication")
+public class AuthenticationController {
+    private final UserService userService;
+
+
+    public AuthenticationController (UserService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserLoginResponseDTO> login (@RequestBody @Valid UserLoginDTO data) {
+        UserLoginResponseDTO token = userService.login(data);
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(token);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<UserResponseDTO> register(@RequestBody @Valid UserRegisterDTO data) {
+         UserResponseDTO newUser = userService.registerUser(data);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+    }
+}

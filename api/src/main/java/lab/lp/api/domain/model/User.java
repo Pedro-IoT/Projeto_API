@@ -1,14 +1,11 @@
-package lab.lp.api.model;
+package lab.lp.api.domain.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "TB_USERS")
@@ -19,7 +16,7 @@ public class User implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
     @Column(nullable = false)
@@ -27,6 +24,12 @@ public class User implements Serializable {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private UserRole role;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
@@ -57,7 +60,7 @@ public class User implements Serializable {
     }
 
     public String getEmail () {
-        return email;
+        return this.email;
     }
 
     public void setEmail (String email) {
@@ -70,6 +73,22 @@ public class User implements Serializable {
 
     public void setHabits(Set<Habit> habits) {
         this.habits = habits;
+    }
+
+    public String getPassword () {
+        return this.password;
+    }
+
+    public void setPassword (String password) {
+        this.password = password;
+    }
+
+    public UserRole getRole() {
+        return this.role;
+    }
+
+    public void setRole (UserRole userRole) {
+        this.role = userRole;
     }
 }
 

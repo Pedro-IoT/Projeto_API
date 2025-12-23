@@ -1,4 +1,4 @@
-package lab.lp.api.dto;
+package lab.lp.api.dto.users;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

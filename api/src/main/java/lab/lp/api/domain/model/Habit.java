@@ -1,10 +1,11 @@
-package lab.lp.api.model;
+package lab.lp.api.domain.model;
 
 import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -17,7 +18,7 @@ public class Habit implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
     @Column(nullable = false)
@@ -68,4 +69,40 @@ public class Habit implements Serializable {
     public void addDateCheck (LocalDate date) {
         this.dateChecks.add(date);
     }
+
+    public boolean checkedToday () {
+        LocalDate today = LocalDate.now();
+        return this.dateChecks.contains(today);
+    }
+
+    public int getCurrentStreak (LocalDate today) {
+        if (this.dateChecks.isEmpty()) {
+            return 0;
+        }
+        List<LocalDate> copyDates = new ArrayList<>(this.dateChecks);
+        copyDates.sort(Collections.reverseOrder());
+
+        int streak = 0;
+        LocalDate yesterday = today.minusDays(1);
+
+        LocalDate lastChecked = copyDates.get(0);
+        if (!lastChecked.isEqual(today) && !lastChecked.isEqual(yesterday)) {
+            return 0;
+        }
+
+        LocalDate expectedDate = lastChecked;
+
+        for (LocalDate date : copyDates) {
+            if (date.isEqual(expectedDate)){
+                streak++;
+                expectedDate = date.minusDays(1);
+            }
+            else {
+                break;
+            }
+        }
+        return streak;
+    }
 }
+
+
