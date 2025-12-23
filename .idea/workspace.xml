@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8cfb57a6-ddfb-482a-a302-9eb81bc70b93" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Projeto_API.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/ApiApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/controller/AuthenticationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/controller/HabitController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/controller/HealthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/domain/model/Habit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/domain/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/domain/model/UserRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/domain/repository/HabitRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/domain/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/domain/service/AuthorizationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/domain/service/HabitService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/domain/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/dto/habit/HabitCreateDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/dto/habit/HabitResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/dto/users/UserLoginDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/dto/users/UserLoginResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/dto/users/UserRegisterDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/dto/users/UserResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/infra/config/OpenApiConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/infra/exception/HabitTrackerException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/infra/exception/RestErrorMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/infra/exception/RestExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/infra/security/CustomUserDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/infra/security/SecurityConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/infra/security/SecurityFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/lab/lp/api/infra/security/TokenService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/test/java/lab/lp/api/ApiApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Record" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Pedro-IoT&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Pedro-IoT/Projeto_API.git&quot;,
+    &quot;accountId&quot;: &quot;719bdeb7-31f7-4c89-a1f5-fd9488b556af&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="35hBDiAsnGoq4ccYAVZZOpvpRpS" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.API Application.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/pedro/IdeaProjects/Projeto_API"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="API Application" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="25" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <envs>
+        <env name="DB_PASSWORD" value="npg_wu7S8ACMGYLP" />
+        <env name="DB_USERNAME" value="neondb_owner" />
+        <env name="DB_URL" value="jdbc:postgresql://ep-lucky-poetry-ahzi080x-pooler.c-3.us-east-1.aws.neon.tech/neondb?&amp;sslmode=require&amp;channelBinding=require" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="lab.lp.api.ApiApplication" />
+      <module name="api" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="api" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="api" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.138" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8cfb57a6-ddfb-482a-a302-9eb81bc70b93" name="Changes" comment="" />
+      <created>1763552308995</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763552308995</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Refatoração incompleta (continuar depois)">
+      <option name="closed" value="true" />
+      <created>1764293995407</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1764293995407</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Refatoração completa">
+      <option name="closed" value="true" />
+      <created>1764543596831</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1764543596831</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Adicionando funcionalidades de deletar e marcar como concluído no controller">
+      <option name="closed" value="true" />
+      <created>1764597613701</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1764597613701</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Adequando código a boas práticas de programação e otimizações">
+      <option name="closed" value="true" />
+      <created>1764615077960</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1764615077960</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Usando DTO no user também, primeira implementação do calculo de streaks">
+      <option name="closed" value="true" />
+      <created>1764801935587</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1764801935587</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Implementação de último endpoint e adicionando funcionalidade de ver habitos feitos no dia">
+      <option name="closed" value="true" />
+      <created>1764892913529</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1764892913529</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Documentação completa via swagger">
+      <option name="closed" value="true" />
+      <created>1764941381066</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1764941381066</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Integração com banco de dados neon">
+      <option name="closed" value="true" />
+      <created>1766160613606</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1766160613606</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Implementação do sistema de autenticação e autorização">
+      <option name="closed" value="true" />
+      <created>1766527630988</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1766527630988</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Refatoração incompleta (continuar depois)" />
+    <MESSAGE value="Refatoração completa" />
+    <MESSAGE value="Adicionando funcionalidades de deletar e marcar como concluído no controller" />
+    <MESSAGE value="Adequando código a boas práticas de programação e otimizações" />
+    <MESSAGE value="Usando DTO no user também, primeira implementação do calculo de streaks" />
+    <MESSAGE value="Implementação de último endpoint e adicionando funcionalidade de ver habitos feitos no dia" />
+    <MESSAGE value="Documentação completa via swagger" />
+    <MESSAGE value="Integração com banco de dados neon" />
+    <MESSAGE value="Implementação do sistema de autenticação e autorização" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementação do sistema de autenticação e autorização" />
+  </component>
+</project>
