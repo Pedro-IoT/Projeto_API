@@ -56,8 +56,8 @@ public class UserService {
         newUser.setEmail(data.email());
         newUser.setRole(UserRole.USER);
         newUser.setPassword(encryptedPassword);
-
         userRepository.save(newUser);
+
         return convertToDTO(newUser);
     }
 

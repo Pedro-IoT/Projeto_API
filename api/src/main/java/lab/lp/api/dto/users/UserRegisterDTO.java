@@ -14,7 +14,7 @@ public record UserRegisterDTO(
         @NotBlank() @Email(message = "E-mail inválido")
         String email,
 
-        @Schema(description = "Senha do usuário a ser criada", example = "joao123")
+        @Schema(description = "Senha do usuário a ser criada", example = "teste1234")
         @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres")
         String password
         ) {

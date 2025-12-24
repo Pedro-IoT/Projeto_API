@@ -1,4 +1,9 @@
 package lab.lp.api.dto.users;
 
-public record UserLoginResponseDTO(String token) {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public record UserLoginResponseDTO(
+        @Schema(description = "Token JWT do Usuário")
+        String token
+    ) {
 }

@@ -1,6 +1,9 @@
 package lab.lp.api.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lab.lp.api.dto.users.UserLoginDTO;
@@ -32,13 +35,24 @@ public class AuthenticationController {
         this.userService = userService;
     }
 
+    @Operation(summary = "Realiza o Login de um usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuário Logado com sucesso"),
+            @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
+    })
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponseDTO> login (@RequestBody @Valid UserLoginDTO data) {
         UserLoginResponseDTO token = userService.login(data);
 
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(token);
+        return ResponseEntity.status(HttpStatus.OK).body(token);
     }
 
+
+    @Operation(summary = "Realiza a criação de um usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Usuário criado com sucesso"),
+            @ApiResponse(responseCode = "422", description = "Não foi possível criar usuário")
+    })
     @PostMapping("/register")
     public ResponseEntity<UserResponseDTO> register(@RequestBody @Valid UserRegisterDTO data) {
          UserResponseDTO newUser = userService.registerUser(data);
