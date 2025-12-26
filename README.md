@@ -49,7 +49,7 @@ Certifique-se de ter instalado em sua máquina:
 ### 1. Clonar o repositório
 
 ```bash
-git clone [https://github.com/SEU-USUARIO/habit-tracker-api.git](https://github.com/SEU-USUARIO/habit-tracker-api.git)
+git clone https://github.com/Pedro-IoT/Projeto_API.git
 cd habit-tracker-api/api
 
 ```
