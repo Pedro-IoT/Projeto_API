@@ -6,7 +6,6 @@ import lab.lp.api.domain.model.UserRole;
 import lab.lp.api.dto.users.UserLoginDTO;
 import lab.lp.api.dto.users.UserLoginResponseDTO;
 import lab.lp.api.dto.users.UserRegisterDTO;
-import lab.lp.api.dto.users.UserResponseDTO;
 import lab.lp.api.domain.model.User;
 import lab.lp.api.infra.exception.HabitTrackerException;
 import lab.lp.api.infra.security.CustomUserDetails;
@@ -36,15 +35,23 @@ public class UserService {
         this.tokenService = tokenService;
     }
 
-    private UserResponseDTO convertToDTO (User user) {
-        return new UserResponseDTO(
+    private UserLoginResponseDTO convertToDTO (User user, String token) {
+        return new UserLoginResponseDTO(
                 user.getName(),
-                user.getId()
+                token
         );
+    }
+    private String generateToken (String email, String password) {
+        var usernamePassword = new UsernamePasswordAuthenticationToken(email, password);
+        var auth = this.authenticationManager.authenticate(usernamePassword);
+
+        var userDetails = (CustomUserDetails) auth.getPrincipal();
+
+        return tokenService.generateToken(userDetails.getUser());
     }
 
     @Transactional
-    public UserResponseDTO registerUser (UserRegisterDTO data) {
+    public UserLoginResponseDTO registerUser (UserRegisterDTO data) {
         if (userRepository.findUserByEmail(data.email()).isPresent()) {
             throw new HabitTrackerException("E-mail já cadastrado");
         }
@@ -58,17 +65,17 @@ public class UserService {
         newUser.setPassword(encryptedPassword);
         userRepository.save(newUser);
 
-        return convertToDTO(newUser);
+        return convertToDTO(newUser, generateToken(data.email(), data.password()));
     }
 
     public UserLoginResponseDTO login (UserLoginDTO data) {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
-        var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        var userDetails = (CustomUserDetails) auth.getPrincipal();
 
-        var token = tokenService.generateToken(userDetails.getUser());
+        User user = userRepository.findUserByEmail(data.email()).orElse(null);
+        if (user == null) {
+            throw new HabitTrackerException("Usuário não econtrado!");
+        }
 
-        return new UserLoginResponseDTO(token);
+        return new UserLoginResponseDTO(generateToken(data.email(), data.password()), user.getName());
     }
 }

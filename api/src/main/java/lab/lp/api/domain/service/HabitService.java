@@ -96,6 +96,10 @@ public class HabitService {
                 habit.addDateCheck(today);
                 habitRepository.save(habit);
             }
+            else{
+                habit.getDateChecks().remove(today);
+                habitRepository.save(habit);
+            }
         }
         else return null;
 

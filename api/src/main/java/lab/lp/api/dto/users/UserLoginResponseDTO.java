@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 public record UserLoginResponseDTO(
         @Schema(description = "Token JWT do Usuário")
-        String token
+        String token,
+        @Schema(description = "Nome do usuário")
+        String name
     ) {
 }
