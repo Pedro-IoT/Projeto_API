@@ -10,7 +10,10 @@ import lab.lp.api.dto.users.UserLoginDTO;
 import lab.lp.api.dto.users.UserLoginResponseDTO;
 import lab.lp.api.dto.users.UserRegisterDTO;
 import lab.lp.api.domain.service.UserService;
+import lab.lp.api.infra.security.CookieService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,10 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Authentication")
 public class AuthenticationController {
     private final UserService userService;
+    private final CookieService cookieService;
 
 
-    public AuthenticationController (UserService userService) {
+    public AuthenticationController (UserService userService, CookieService cookieService) {
         this.userService = userService;
+        this.cookieService = cookieService;
     }
 
     @Operation(summary = "Realiza o Login de um usuário")
@@ -35,9 +40,12 @@ public class AuthenticationController {
     })
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponseDTO> login (@RequestBody @Valid UserLoginDTO data) {
-        UserLoginResponseDTO token = userService.login(data);
+        UserLoginResponseDTO responseDTO = userService.login(data);
+        ResponseCookie cookie = cookieService.generateTokenCookie(responseDTO.token());
 
-        return ResponseEntity.status(HttpStatus.OK).body(token);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, cookie.toString())
+                .body(new UserLoginResponseDTO(null, responseDTO.name()));
     }
 
 
@@ -48,8 +56,20 @@ public class AuthenticationController {
     })
     @PostMapping("/register")
     public ResponseEntity<UserLoginResponseDTO> register(@RequestBody @Valid UserRegisterDTO data) {
-         UserLoginResponseDTO newUser = userService.registerUser(data);
+         UserLoginResponseDTO responseDTO = userService.registerUser(data);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+         ResponseCookie cookie = cookieService.generateTokenCookie(responseDTO.token());
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .header(HttpHeaders.SET_COOKIE, cookie.toString())
+                .body(new UserLoginResponseDTO(null, responseDTO.name()));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout() {
+        ResponseCookie cookie = cookieService.getCleanTokenCookie();
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, cookie.toString())
+                .build();
     }
 }

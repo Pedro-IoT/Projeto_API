@@ -8,7 +8,6 @@ import lab.lp.api.domain.model.User;
 import lab.lp.api.domain.repository.UserRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -42,9 +41,13 @@ public class SecurityFilter extends OncePerRequestFilter {
     }
 
     private String recoverToken (HttpServletRequest request) {
-        var authHeader = request.getHeader("Authorization");
-        if(authHeader == null) return null;
+        if (request.getCookies() == null) return null;
 
-        return authHeader.replace("Bearer ", "");
+        for (var cookie : request.getCookies()) {
+            if ("token".equals(cookie.getName())) {
+                return cookie.getValue();
+            }
+        }
+        return null;
     }
 }
