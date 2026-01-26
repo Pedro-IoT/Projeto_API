@@ -37,8 +37,8 @@ public class UserService {
 
     private UserLoginResponseDTO convertToDTO (User user, String token) {
         return new UserLoginResponseDTO(
-                user.getName(),
-                token
+                token,
+                user.getName()
         );
     }
     private String generateToken (String email, String password) {
