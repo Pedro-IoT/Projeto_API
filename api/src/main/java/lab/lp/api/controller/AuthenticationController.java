@@ -63,6 +63,10 @@ public class AuthenticationController {
                 .body(new UserLoginResponseDTO(null, responseDTO.name()));
     }
 
+    @Operation(summary = "Realiza o Logout de um usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Usuário deslogado com sucesso")
+    })
     @PostMapping("/logout")
     public ResponseEntity<Void> logout() {
         ResponseCookie cookie = cookieService.getCleanTokenCookie();
@@ -70,6 +74,11 @@ public class AuthenticationController {
                 .header(HttpHeaders.SET_COOKIE, cookie.toString())
                 .build();
     }
+    @Operation(summary = "Retorna os dados do usuário logado")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Dados do usuário retornados com sucesso"),
+            @ApiResponse(responseCode = "403", description = "Usuário não autenticado")
+    })
     @GetMapping("/me")
     public ResponseEntity<String> me() {
         String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
